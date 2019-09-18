@@ -3,14 +3,16 @@ public class Stock {
     private String name;
     private double price;
     private double deliveryCost;
-    private double VAT;
+    private double vat;
+    private String size;
 
-    public Stock(String category, String name, double price, double deliveryCost, double VAT) {
+    public Stock(String category, String name, double price, String size) {
         this.category = category;
         this.name = name;
         this.price = price;
-        this.deliveryCost = deliveryCost;
-        this.VAT = VAT;
+        this.size = size;
+        calcVat();
+        calcDeliveryCost();
     }
 
     public String getCategory() {
@@ -45,11 +47,39 @@ public class Stock {
         this.deliveryCost = deliveryCost;
     }
 
-    public double getVAT() {
-        return VAT;
+    public double getVat() {
+        return vat;
     }
 
-    public void setVAT(double VAT) {
-        this.VAT = VAT;
+    public void setVat(double vat) {
+        this.vat = vat;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void calcVat() {
+        if(getCategory().equalsIgnoreCase("Cleaning")) {
+            setVat(.135);
+        }else if(getCategory().equalsIgnoreCase("Stationary")) {
+            setVat(.09);
+        }else {
+            setVat(.23);
+        }
+    }
+
+    public void calcDeliveryCost() {
+        if(getSize().equalsIgnoreCase("Large")) {
+            setDeliveryCost(22.00);
+        }else if(getSize().equalsIgnoreCase("Medium")) {
+            setDeliveryCost(11.00);
+        }else if(getSize().equalsIgnoreCase("Small")) {
+            setDeliveryCost(5.50);
+        }
     }
 }

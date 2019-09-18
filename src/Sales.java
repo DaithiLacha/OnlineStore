@@ -1,18 +1,19 @@
 import java.util.Date;
 
+
 public class Sales {
     private Customer customer;
     private double totalCost;
     private long saleNumber;
-    private Date deliveryDay;
+    private int daysForDelivery;
     private Date dateOfSale;
     private Stock stockItem;
 
-    public Sales(Customer customer, double totalCost, long saleNumber, Date deliveryDay, Date dateOfSale, Stock stockItem) {
+    public Sales(Customer customer, double totalCost, long saleNumber, int deliveryDay, Date dateOfSale, Stock stockItem) {
         this.customer = customer;
         this.totalCost = totalCost;
         this.saleNumber = saleNumber;
-        this.deliveryDay = deliveryDay;
+        this.daysForDelivery = deliveryDay;
         this.dateOfSale = dateOfSale;
         this.stockItem = stockItem;
     }
@@ -41,12 +42,12 @@ public class Sales {
         this.saleNumber = saleNumber;
     }
 
-    public Date getDeliveryDay() {
-        return deliveryDay;
+    public int getDaysForDelivery() {
+        return daysForDelivery;
     }
 
-    public void setDeliveryDay(Date deliveryDay) {
-        this.deliveryDay = deliveryDay;
+    public void setDaysForDelivery(int daysForDelivery) {
+        this.daysForDelivery = daysForDelivery;
     }
 
     public Date getDateOfSale() {
@@ -63,5 +64,13 @@ public class Sales {
 
     public void setStockItem(Stock stockItem) {
         this.stockItem = stockItem;
+    }
+
+    public void calcDaysForDelivery() {
+        if(getCustomer().getMembership().equalsIgnoreCase("premium")) {
+            setDaysForDelivery(2);
+        } else {
+            setDaysForDelivery(5 + (int)(Math.random() * 3));
+        }
     }
 }
