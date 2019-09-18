@@ -5,6 +5,7 @@ public class Stock {
     private double deliveryCost;
     private double vat;
     private String size;
+    private boolean isSold;
 
     public Stock(String category, String name, double price, String size) {
         this.category = category;
@@ -13,6 +14,7 @@ public class Stock {
         this.size = size;
         calcVat();
         calcDeliveryCost();
+        isSold = false;
     }
 
     public String getCategory() {
@@ -73,6 +75,14 @@ public class Stock {
         }
     }
 
+    public boolean isSold() {
+        return isSold;
+    }
+
+    public void setSold(boolean sold) {
+        isSold = sold;
+    }
+
     public void calcDeliveryCost() {
         if(getSize().equalsIgnoreCase("Large")) {
             setDeliveryCost(22.00);
@@ -81,5 +91,18 @@ public class Stock {
         }else if(getSize().equalsIgnoreCase("Small")) {
             setDeliveryCost(5.50);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "category='" + category + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", deliveryCost=" + deliveryCost +
+                ", vat=" + vat +
+                ", size='" + size + '\'' +
+                ", isSold=" + isSold +
+                '}';
     }
 }

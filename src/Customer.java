@@ -7,6 +7,7 @@ public class Customer {
     private double walletBalance;
     private Date dob;
 
+
     public Customer(String membership, String name, String address, double walletBalance, Date dob) {
         this.membership = membership;
         this.name = name;
@@ -53,5 +54,25 @@ public class Customer {
 
     public void setDob(Date dob) {
         this.dob = dob;
+    }
+
+    public void addToWallet(double amount) {
+        walletBalance = (walletBalance + amount);
+    }
+
+    public void subFromWallet(double amount) {
+        walletBalance = walletBalance - amount;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "membership='" + membership + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", walletBalance=" + walletBalance +
+                ", dob=" + dob +
+                '}';
     }
 }

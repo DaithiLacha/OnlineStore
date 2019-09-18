@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -7,15 +8,15 @@ public class Sales {
     private long saleNumber;
     private int daysForDelivery;
     private Date dateOfSale;
-    private Stock stockItem;
+    private Stock[] stockItems;
 
-    public Sales(Customer customer, double totalCost, long saleNumber, int deliveryDay, Date dateOfSale, Stock stockItem) {
+    public Sales(Customer customer, double totalCost, long saleNumber, int daysForDelivery, Stock[] stockItems) {
         this.customer = customer;
         this.totalCost = totalCost;
         this.saleNumber = saleNumber;
-        this.daysForDelivery = deliveryDay;
-        this.dateOfSale = dateOfSale;
-        this.stockItem = stockItem;
+        this.daysForDelivery = daysForDelivery;
+        dateOfSale = new Date();
+        this.stockItems = stockItems;
     }
 
     public Customer getCustomer() {
@@ -58,19 +59,31 @@ public class Sales {
         this.dateOfSale = dateOfSale;
     }
 
-    public Stock getStockItem() {
-        return stockItem;
+    public Stock[] getStockItem() {
+        return stockItems;
     }
 
-    public void setStockItem(Stock stockItem) {
-        this.stockItem = stockItem;
+    public void setStockItem(Stock[] stockItems) {
+        this.stockItems = stockItems;
     }
 
     public void calcDaysForDelivery() {
         if(getCustomer().getMembership().equalsIgnoreCase("premium")) {
-            setDaysForDelivery(2);
+            daysForDelivery = 2;
         } else {
-            setDaysForDelivery(5 + (int)(Math.random() * 3));
+            daysForDelivery = (5 + (int)(Math.random() * 3));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Sales{" +
+                "customer=" + customer +
+                ", totalCost=" + totalCost +
+                ", saleNumber=" + saleNumber +
+                ", daysForDelivery=" + daysForDelivery +
+                ", dateOfSale=" + dateOfSale +
+                ", stockItems=" + Arrays.toString(stockItems) +
+                '}';
     }
 }
