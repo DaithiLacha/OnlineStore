@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+public abstract class Category {
+    public abstract double calcVAT();
 
-public interface Category {
 }

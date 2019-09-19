@@ -1,4 +1,10 @@
-package PACKAGE_NAME;
+public class Cleaning extends Category{
+    public double calcVAT() {
+        return .13;
+    }
 
-public class Cleaning {
+    @Override
+    public String toString() {
+        return "Category: Stationary\n VAT: " + calcVAT() + "%";
+    }
 }

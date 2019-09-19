@@ -1,28 +1,24 @@
 public class Stock {
-    private String category;
+    private Category cat;
     private String name;
     private double price;
-    private double deliveryCost;
-    private double vat;
-    private String size;
+    private ItemSize size;
     private boolean isSold;
 
-    public Stock(String category, String name, double price, String size) {
-        this.category = category;
+    public Stock(Category cat, String name, double price, ItemSize size) {
+        this.cat = cat;
         this.name = name;
         this.price = price;
         this.size = size;
-        calcVat();
-        calcDeliveryCost();
         isSold = false;
     }
 
-    public String getCategory() {
-        return category;
+    public Category getCategory() {
+        return cat;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(Category cat) {
+        this.cat = cat;
     }
 
     public String getName() {
@@ -41,38 +37,12 @@ public class Stock {
         this.price = price;
     }
 
-    public double getDeliveryCost() {
-        return deliveryCost;
-    }
-
-    public void setDeliveryCost(double deliveryCost) {
-        this.deliveryCost = deliveryCost;
-    }
-
-    public double getVat() {
-        return vat;
-    }
-
-    public void setVat(double vat) {
-        this.vat = vat;
-    }
-
-    public String getSize() {
+    public ItemSize getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(ItemSize size) {
         this.size = size;
-    }
-
-    public void calcVat() {
-        if(getCategory().equalsIgnoreCase("Cleaning")) {
-            setVat(.135);
-        }else if(getCategory().equalsIgnoreCase("Stationary")) {
-            setVat(.09);
-        }else {
-            setVat(.23);
-        }
     }
 
     public boolean isSold() {
@@ -83,25 +53,13 @@ public class Stock {
         isSold = sold;
     }
 
-    public void calcDeliveryCost() {
-        if(getSize().equalsIgnoreCase("Large")) {
-            setDeliveryCost(22.00);
-        }else if(getSize().equalsIgnoreCase("Medium")) {
-            setDeliveryCost(11.00);
-        }else if(getSize().equalsIgnoreCase("Small")) {
-            setDeliveryCost(5.50);
-        }
-    }
-
     @Override
     public String toString() {
         return "Stock{" +
-                "category='" + category + '\'' +
+                cat.toString() + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", deliveryCost=" + deliveryCost +
-                ", vat=" + vat +
-                ", size='" + size + '\'' +
+                size.toString() +
                 ", isSold=" + isSold +
                 '}';
     }
